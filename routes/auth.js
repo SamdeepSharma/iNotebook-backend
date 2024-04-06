@@ -99,5 +99,4 @@ router.post('/getdata', fetchuser, async (req,res)=>{
      }
 })
 
-
 module.exports = router
