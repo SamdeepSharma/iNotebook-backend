@@ -16,7 +16,7 @@
     "express": "^4.19.2",
     "express-validator": "^7.0.1",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.2.3"
+    "mongoose": "^8.3.1"
   },
   "devDependencies": {
     "nodemon": "^3.1.0"
