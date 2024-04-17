@@ -3,14 +3,14 @@ name: Deploy Node Application
 on:
   push:
     branches:
-      - master  # Assuming 'master' is your default branch name
+      - master
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Source
-        uses: actions/checkout@v2  # Explicitly specify the version of the checkout action
+        uses: actions/checkout@v2
 
       - name: Login to Docker Hub
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
@@ -23,14 +23,17 @@ jobs:
 
   deploy:
     needs: build
-    runs-on: self-hosted  # Assuming you have a self-hosted runner configured
+    runs-on: self-hosted
     steps:
+      - name: Log in to Docker Hub (for private repository)
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
       - name: Pull image from Docker Hub
         run: docker pull samdeepsharma/inotebook:latest
 
       - name: Run Docker Container
         run: |
-          docker run -d -p 5000:5000 \
+          docker run -d -p 8080:5000 \
             --name nodejs-app-container \
             -e MONGO_PASSWORD="${{ secrets.MONGO_PASSWORD }}" \
             samdeepsharma/inotebook:latest
