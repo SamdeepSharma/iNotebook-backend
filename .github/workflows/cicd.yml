@@ -12,7 +12,7 @@ jobs:
       - name: Checkout Source
         uses: actions/checkout
       - name: Login to docker hub
-        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -P ${{ secrets.DOCKER_PASSWORD }}
+        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
       - name: Build Docker Image
         run: docker build -t samdeepsharma/inotebook .
       - name: Publish Image to docker hub
