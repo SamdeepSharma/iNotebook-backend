@@ -3,7 +3,7 @@ name: Deploy Node Application
 on:
   push:
     branches:
-      - main  # Assuming 'main' is your default branch name
+      - master  # Assuming 'master' is your default branch name
 
 jobs:
   build:
