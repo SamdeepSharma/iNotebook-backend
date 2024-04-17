@@ -1,5 +1,8 @@
 const mongoose = require('mongoose')
-const uri = "mongodb+srv://SamdeepSharma:Samdeep%40iNotebook@inotebook.7082vbv.mongodb.net/iNotebook";
+require("dotenv").config();
+
+const password = process.env.MONGO_PASSWORD;
+const uri = `mongodb+srv://SamdeepSharma:${password}@inotebook.7082vbv.mongodb.net/iNotebook`;
 const clientOptions = { serverApi: { version: '1', strict: true, deprecationErrors: true } };
 
 const connectToDB = async() =>{

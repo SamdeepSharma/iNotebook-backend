@@ -1,0 +1,28 @@
+name: Deploy Node Application
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source
+        uses: actions/checkout@4
+      - name: Login to docker hub
+        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -P ${{ secrets.DOCKER_PASSWORD }}
+      - name: Build Docker Image
+        run: docker build -t samdeepsharma/inotebook .
+      - name: Publish Image to docker hub
+        run: docker push samdeepsharma/inotebook:latest
+
+deploy:
+  needs: build
+  runs-on: self-hosted
+  steps:
+    - name: Pull image from docker hub
+      run: docker pull samdeepsharma/inotebook:latest
+    - name: Run Docker Container
+      run: docker run -d -p 5000:5000 --name nodejs-app-container -e MONGO_PASSWORD='${{ secrets.MONGO_PASSWORD }}' samdeepsharma/inotebook
