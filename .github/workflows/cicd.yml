@@ -33,7 +33,7 @@ jobs:
 
       - name: Run Docker Container
         run: |
-          docker run -d -p 8080:5000 \
+          docker run -d -p 5000:5000 \
             --name nodejs-app-container \
             -e MONGO_PASSWORD="${{ secrets.MONGO_PASSWORD }}" \
             samdeepsharma/inotebook:latest
