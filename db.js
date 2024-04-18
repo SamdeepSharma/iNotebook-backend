@@ -6,8 +6,7 @@ const uri = `mongodb+srv://SamdeepSharma:${password}@inotebook.7082vbv.mongodb.n
 const clientOptions = { serverApi: { version: '1', strict: true, deprecationErrors: true } };
 
 const connectToDB = async() =>{
-    console.log(process.env.MONGO_PASSWORD)
-     await mongoose.connect(uri, clientOptions);
+    await mongoose.connect(uri, clientOptions);
     await mongoose.connection.db.admin().command({ ping: 1 });
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
 }
