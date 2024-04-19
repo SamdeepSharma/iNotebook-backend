@@ -5,7 +5,10 @@ const cors = require('cors')
 const app = express() 
 
 connectToDB();
-app.use(cors());
+
+app.use(cors({
+  origin: 'http://3.111.30.209:5173'
+}));
 
 const port = 5000
 
@@ -13,10 +16,6 @@ app.use(bodyParser.json())
 app.use('/api/auth', require('./routes/auth'))
 app.use('/api/notes', require('./routes/notes'))
 
-app.get('/',(req, res)=>{
-  res.send("Hello from iNotebook Cloud!")
-})
-
 app.listen(port, () => {
-  console.log(`iNotebook Cloud listening on port ${port}`)
+  console.log(`iNotebook-Cloud is up and running`)
 })
