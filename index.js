@@ -6,8 +6,20 @@ const app = express()
 
 connectToDB();
 
+const allowedOrigins = [
+  'http://3.111.30.209:5173', // Frontend URL 1
+  'http://localhost:5173', // Frontend URL 2
+];
+
 app.use(cors({
-  origin: 'http://3.111.30.209:5173'
+  origin: (origin, callback) => {
+    // Check if the request origin is in the allowedOrigins array
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true); // Allow the request
+    } else {
+      callback(new Error('Not allowed by CORS')); // Deny the request
+    }
+  }
 }));
 
 const port = 5000
