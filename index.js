@@ -7,8 +7,9 @@ const app = express()
 connectToDB();
 
 const allowedOrigins = [
-  'http://3.111.30.209:5173', // Frontend URL 1
+  'http://3.111.30.209:5173', // Frontend URL 1 AWS EC2
   'http://localhost:5173', // Frontend URL 2
+  'https://i-notebook-cloud-secure.vercel.app' // Vercel Deployment URL
 ];
 
 app.use(cors({
