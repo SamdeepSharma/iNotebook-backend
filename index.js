@@ -2,7 +2,7 @@ const bodyParser = require('body-parser');
 const express = require('express')
 const connectToDB = require('./db');
 const cors = require('cors')
-const app = express() 
+const app = express()
 
 connectToDB();
 
@@ -26,11 +26,11 @@ app.use(cors({
 const port = 5000
 
 app.use(bodyParser.json())
-app.use('/', (req,res)=>{
-  res.send('Welcome to iNotebook-Cloud')
-})
 app.use('/api/auth', require('./routes/auth'))
 app.use('/api/notes', require('./routes/notes'))
+app.use('/', (req, res) => {
+  res.send('Welcome to iNotebook-Cloud')
+})
 
 app.listen(port, () => {
   console.log(`iNotebook-Cloud is up and running`)
