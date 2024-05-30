@@ -26,6 +26,9 @@ app.use(cors({
 const port = 5000
 
 app.use(bodyParser.json())
+app.use('/', (req,res)=>{
+  res.send('Welcome to iNotebook-Cloud')
+})
 app.use('/api/auth', require('./routes/auth'))
 app.use('/api/notes', require('./routes/notes'))
 
