@@ -31,7 +31,6 @@ app.use('/api/notes', require('./routes/notes'))
 app.use('/', (req, res) => {
   res.send('Welcome to iNotebook-Cloud')
 })
-
 app.listen(port, () => {
   console.log(`iNotebook-Cloud is up and running`)
 })
