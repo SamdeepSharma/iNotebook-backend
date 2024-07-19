@@ -24,7 +24,7 @@ app.use(cors({
   }
 }));
 
-const port = 5000
+const port = 8080
 
 app.use(bodyParser.json())
 app.use('/api/auth', require('./routes/auth'))
